@@ -1,0 +1,1705 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Build-A-Lido ☀️ Design Your Dream Summer Escape</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: #0a1628;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+        
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                linear-gradient(180deg, 
+                    rgba(10, 22, 40, 0.4) 0%,
+                    rgba(255, 107, 157, 0.15) 30%,
+                    rgba(255, 160, 122, 0.2) 50%,
+                    rgba(78, 205, 196, 0.15) 70%,
+                    rgba(10, 22, 40, 0.5) 100%
+                );
+            z-index: 0;
+            pointer-events: none;
+        }
+        
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                repeating-linear-gradient(
+                    0deg,
+                    transparent,
+                    transparent 2px,
+                    rgba(255, 255, 255, 0.03) 2px,
+                    rgba(255, 255, 255, 0.03) 4px
+                );
+            pointer-events: none;
+            z-index: 1;
+            opacity: 0.3;
+        }
+        
+        .animated-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+            opacity: 0.12;
+        }
+        
+        .float-element {
+            position: absolute;
+            animation: float 25s infinite ease-in-out;
+            opacity: 0.6;
+            font-size: 70px;
+            filter: blur(1px);
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            25% { transform: translate(120px, -80px) rotate(45deg); }
+            50% { transform: translate(-60px, -160px) rotate(90deg); }
+            75% { transform: translate(180px, -120px) rotate(135deg); }
+        }
+        
+        .container {
+            max-width: 850px;
+            margin: 0 auto;
+            padding: 60px 20px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .card {
+            background: rgba(255, 255, 255, 0.97);
+            backdrop-filter: blur(30px) saturate(150%);
+            border-radius: 6px;
+            padding: 60px 50px;
+            box-shadow: 
+                0 25px 80px rgba(0, 0, 0, 0.35),
+                inset 0 1px 0 rgba(255, 255, 255, 0.9);
+            margin-bottom: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, 
+                #FF6B9D 0%, 
+                #FFA07A 33%, 
+                #FFD93D 66%, 
+                #4ECDC4 100%
+            );
+        }
+        
+        .card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                repeating-linear-gradient(
+                    0deg,
+                    transparent,
+                    transparent 3px,
+                    rgba(0, 0, 0, 0.015) 3px,
+                    rgba(0, 0, 0, 0.015) 6px
+                );
+            pointer-events: none;
+            opacity: 0.4;
+        }
+        
+        h1 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 5em;
+            color: #0a1628;
+            text-align: center;
+            margin-bottom: 10px;
+            line-height: 0.95;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            text-shadow: 
+                2px 2px 0 rgba(255, 107, 157, 0.3),
+                4px 4px 0 rgba(255, 160, 122, 0.2);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .subtitle {
+            text-align: center;
+            font-size: 1.15em;
+            color: #FF6B9D;
+            margin-bottom: 45px;
+            font-weight: 500;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .intro-text {
+            text-align: center;
+            font-size: 1.05em;
+            line-height: 1.85;
+            color: #2c3e50;
+            margin-bottom: 30px;
+            font-weight: 400;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .question-container {
+            display: none;
+            animation: fadeIn 0.6s ease-in;
+        }
+        
+        .question-container.active {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .question-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2.4em;
+            color: #0a1628;
+            margin-bottom: 8px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            line-height: 1.1;
+        }
+        
+        .question-number {
+            font-size: 0.85em;
+            color: #FF6B9D;
+            margin-bottom: 35px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+        
+        .options {
+            display: grid;
+            gap: 12px;
+        }
+        
+        .option {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border: 2px solid transparent;
+            border-radius: 4px;
+            padding: 22px 28px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+        }
+        
+        .option::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, 
+                rgba(255, 107, 157, 0.9) 0%, 
+                rgba(255, 160, 122, 0.85) 50%, 
+                rgba(78, 205, 196, 0.9) 100%
+            );
+            transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 0;
+        }
+        
+        .option:hover::before {
+            left: 0;
+        }
+        
+        .option:hover {
+            border-color: rgba(255, 107, 157, 0.6);
+            transform: translateX(4px);
+            box-shadow: 
+                -4px 4px 0 rgba(255, 107, 157, 0.3),
+                0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .option-content {
+            position: relative;
+            z-index: 1;
+            transition: color 0.3s ease;
+        }
+        
+        .option:hover .option-content {
+            color: white;
+        }
+        
+        .option-title {
+            font-weight: 700;
+            font-size: 1.15em;
+            margin-bottom: 4px;
+            letter-spacing: 0.3px;
+        }
+        
+        .option-desc {
+            font-size: 0.92em;
+            color: #6c757d;
+            transition: color 0.3s ease;
+            font-weight: 400;
+        }
+        
+        .option:hover .option-desc {
+            color: rgba(255, 255, 255, 0.95);
+        }
+        
+        .btn {
+            background: linear-gradient(135deg, #FF6B9D 0%, #FFA07A 100%);
+            color: white;
+            border: none;
+            padding: 18px 55px;
+            font-size: 1.15em;
+            font-weight: 700;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'DM Sans', sans-serif;
+            display: block;
+            margin: 45px auto 0;
+            box-shadow: 
+                0 4px 15px rgba(255, 107, 157, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            position: relative;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 
+                0 8px 25px rgba(255, 107, 157, 0.5),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3);
+        }
+        
+        .btn:active {
+            transform: translateY(0);
+        }
+        
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .progress-bar {
+            height: 6px;
+            background: rgba(0, 0, 0, 0.08);
+            border-radius: 0;
+            margin-bottom: 40px;
+            overflow: hidden;
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, 
+                #FF6B9D 0%, 
+                #FFA07A 33%, 
+                #FFD93D 66%, 
+                #4ECDC4 100%
+            );
+            transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 0;
+            box-shadow: 0 0 10px rgba(255, 107, 157, 0.5);
+        }
+        
+        .result-container {
+            display: none;
+            text-align: center;
+        }
+        
+        .result-container.active {
+            display: block;
+            animation: fadeIn 0.6s ease-in;
+        }
+        
+        .lido-image {
+            width: 100%;
+            border-radius: 4px;
+            margin: 35px 0;
+            box-shadow: 
+                0 15px 50px rgba(0, 0, 0, 0.3),
+                inset 0 0 0 1px rgba(255, 255, 255, 0.2);
+            position: relative;
+            filter: contrast(1.05) saturate(1.1);
+        }
+        
+        .lido-name {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 4em;
+            color: #0a1628;
+            margin: 25px 0 20px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            line-height: 1;
+            text-shadow: 
+                2px 2px 0 rgba(255, 107, 157, 0.2),
+                4px 4px 0 rgba(255, 160, 122, 0.15);
+        }
+        
+        .lido-description {
+            font-size: 1.1em;
+            line-height: 1.85;
+            color: #2c3e50;
+            margin: 25px 0 45px;
+            font-weight: 400;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .email-form {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 45px 40px;
+            border-radius: 4px;
+            margin: 45px 0;
+            border-top: 3px solid #FF6B9D;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            position: relative;
+        }
+        
+        .email-form::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                repeating-linear-gradient(
+                    0deg,
+                    transparent,
+                    transparent 3px,
+                    rgba(0, 0, 0, 0.01) 3px,
+                    rgba(0, 0, 0, 0.01) 6px
+                );
+            pointer-events: none;
+            opacity: 0.5;
+        }
+        
+        .email-form h3 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2.2em;
+            color: #0a1628;
+            margin-bottom: 12px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .email-form p {
+            color: #495057;
+            margin-bottom: 28px;
+            font-size: 1em;
+            font-weight: 400;
+            line-height: 1.6;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .email-input {
+            width: 100%;
+            padding: 18px 25px;
+            font-size: 1.05em;
+            border: 2px solid #dee2e6;
+            border-radius: 4px;
+            font-family: 'DM Sans', sans-serif;
+            margin-bottom: 18px;
+            transition: all 0.3s ease;
+            background: white;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .email-input:focus {
+            outline: none;
+            border-color: #FF6B9D;
+            box-shadow: 0 0 0 3px rgba(255, 107, 157, 0.1);
+        }
+        
+        .social-share {
+            display: none;
+            margin-top: 35px;
+        }
+        
+        .social-share.active {
+            display: block;
+        }
+        
+        .social-share h3 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.8em;
+            color: #0a1628;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+        
+        .social-buttons {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+        
+        .social-btn {
+            padding: 14px 32px;
+            border-radius: 4px;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.95em;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+        }
+        
+        .social-btn.linkedin {
+            background: #0077B5;
+            color: white;
+        }
+        
+        .social-btn.twitter {
+            background: #1DA1F2;
+            color: white;
+        }
+        
+        .social-btn.copy {
+            background: white;
+            color: #FF6B9D;
+            border: 2px solid #FF6B9D;
+        }
+        
+        .social-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+        }
+        
+        .thank-you {
+            text-align: center;
+            color: #4ECDC4;
+            font-weight: 600;
+            margin-top: 20px;
+            font-size: 1.05em;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 3.2em;
+            }
+            
+            .card {
+                padding: 40px 28px;
+            }
+            
+            .option {
+                padding: 18px 22px;
+            }
+            
+            .lido-name {
+                font-size: 2.8em;
+            }
+            
+            .email-form {
+                padding: 35px 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="animated-bg" id="animatedBg"></div>
+    
+    <div class="container">
+        <div class="card">
+            <div id="intro" class="intro-container">
+                <h1>Build-A-Lido</h1>
+                <p class="subtitle">Your Dream Summer Escape ☀️</p>
+                <p class="intro-text">
+                    Close your eyes. Feel the sun on your skin, taste the salt in the air, hear the rhythm 
+                    of waves and distant laughter. Answer 9 questions to discover your ideal lido, 
+                    a place that exists somewhere between memory and possibility. Ready to find yours?
+                </p>
+                <p class="intro-text" style="font-style: italic; color: #FF6B9D; font-weight: 500; margin-top: 35px;">
+                    From a summer spent documenting lidos across Europe.<br>
+                    Read the full story: <strong>"Lidomania"</strong>
+                </p>
+                <button class="btn" onclick="startQuiz()">Let's Go →</button>
+            </div>
+            
+            <div id="quiz" style="display: none;">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill" style="width: 0%"></div>
+                </div>
+                
+                <!-- Question 1: Location -->
+                <div class="question-container active" data-question="1">
+                    <p class="question-number">Question 1 of 9</p>
+                    <h2 class="question-title">Where is your lido?</h2>
+                    <div class="options">
+                        <div class="option" onclick="selectOption(1, 'ibiza')">
+                            <div class="option-content">
+                                <div class="option-title">🏝️ Ibiza, Spain</div>
+                                <div class="option-desc">White Isle magic & sunset rituals</div>
+                            </div>
+                        </div>
+                        <div class="option" onclick="selectOption(1, 'miami')">
+                            <div class="option-content">
+                                <div class="option-title">🌴 Miami Beach, USA</div>
+                                <div class="option-desc">Art Deco glamour meets ocean drive</div>
+                            </div>
+                        </div>
+                        <div class="option" onclick="selectOption(1, 'cotedazur')">
+                            <div class="option-content">
+                                <div class="option-title">🇫🇷 Côte d'Azur, France</div>
+                                <div class="option-desc">Riviera elegance & Mediterranean dreams</div>
+                            </div>
+                        </div>
+                        <div class="option" onclick="selectOption(1, 'sicily')">
+                            <div class="option-content">
+                                <div class="option-title">🍋 Sicily, Italy</div>
+                                <div class="option-desc">Island authenticity & volcanic beauty</div>
+                            </div>
+                        </div>
+                        <div class="option" onclick="selectOption(1, 'cabo')">
+                            <div class="option-content">
+                                <div class="option-title">🌵 Cabo San Lucas, Mexico</div>
+                                <div class="option-desc">Desert meets sea in technicolor</div>
+                            </div>
+                        </div>
+                        <div class="option" onclick="selectOption(1, 'bali')">
+                            <div class="option-content">
+                                <div class="option-title">🌺 Bali, Indonesia</div>
+                                <div class="option-desc">Tropical zen & rice terrace views</div>
+                            </div>
+                        </div>
+                        <div class="option" onclick="selectOption(1, 'mykonos')">
+                            <div class="option-content">
+                                <div class="option-title">🇬🇷 Mykonos, Greece</div>
+                                <div class="option-desc">Cycladic chic & Aegean sparkle</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Question 2: Vibe -->
+                <div class="question-container" data-question="2">
+                    <p class="question-number">Question 2 of 9</p>
+                    <h2 class="question-title">What is the vibe & atmosphere?</h2>
+                    <div class="options">
+                        <div class="option" onclick="selectOption(2, 'bohemian')">
+                            <div class="option-content">
+                                <div class="option-title">🌸 Bohemian</div>
+                                <div class="option-desc">Free-spirited & artfully undone</div>
+                            </div>
+                        </div>
+                        <div class="option" onclick="selectOption(2, 'peaceful')">
+                            <div class="option-content">
+                                <div class="option-title">🧘 Peaceful & Serene</div>
+                                <div class="option-desc">Quiet luxury & mindful moments</div>
+                            </div>
+                        </div>
+                        <div class="option" onclick="selectOption(2, 'family')">
+                            <div class="option-content">
+                                <div class="option-title">👨‍👩‍👧‍👦 Family Friendly</div>
+                                <div class="option-desc">Joyful chaos & all-ages welcome</div>
+                            </div>
+                        </div>
+                        <div class="option" onclick="selectOption(2, 'party')">
+                            <div class="option-content">
+                                <div class="option-title">🎉 Party Central</div>
+                                <div class="option-desc">Energy levels: maximum</div>
+                            </div>
+                        </div>
+                        <div class="option" onclick="selectOption(2, 'exclusive')">
+                            <div class="option-content">
+                                <div class="option-title">💎 Exclusive & Elite</div>
+                                <div class="option-desc">Velvet rope vibes only</div>
+                            </div>
+                        </div>
+                        <div class="option" onclick="selectOption(2, 'social')">
+                            <div class="option-content">
+                                <div class="option-title">🥂 Social & Chic</div>
+                                <div class="option-desc">See and be seen sophistication</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Question 3: Reservation -->
+                <div class="question-container" data-question="3">
+                    <p class="question-number">Question 3 of 9</p>
+                    <h2 class="question-title">How are you getting a reservation?</h2>
+                    <div class="options">
+                        <div class="option" onclick="selectOption(3, 'walkin')">
+                            <div class="option-content">
+                                <div class="option-title">🚶 Casual Walk-In</div>
+                                <div class="option-desc">Spontaneity is the plan</div>
+                            </div>
+                        </div>
+                        <div class="option" onclick="selectOption(3, 'lastminute')">
+                            <div class="option-content">
+                                <div class="option-title">📱 Booking Last Minute on MySunbed</div>
+                                <div class="option-desc">App-based & always available</div>
+                            </div>
+                        </div>
+                        <div class="option" onclick="selectOption(3, 'vip')">
+                            <div class="option-content">
+                                <div class="option-title">💬 Texting a VIP Contact for a Spot</div>
+                                <div class="option-desc">You know a guy who knows a guy</div>
+                            </div>
+                        </div>
+                        <div class="option" onclick="selectOption(3, 'hotel')">
+                            <div class="option-content">
+                                <div class="option-title">🏨 Reserving in Advance with My Fancy Hotel</div>
+                                <div class="option-desc">Concierge handles everything</div>
+                            </div>
+                        </div>
+                        <div class="option" onclick="selectOption(3, 'invite')">
+                            <div class="option-content">
+                                <div class="option-title">✉️ Secret Invite-Only</div>
+                                <div class="option-desc">If you know, you know</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Question 4: Main Attraction -->
+                <div class="question-container" data-question="4">
+                    <p class="question-number">Question 4 of 9</p>
+                    <h2 class="question-title">What is the main attraction?</h2>
+                    <div class="options">
+                        <div class="option" onclick="selectOption(4, 'dancefloor')">
+                            <div class="option-content">
+                                <div class="option-title">🪩 Illuminated Dance Floor</div>
+                                <div class="option-desc">Where the party really happens</div>
+                            </div>
+                        </div>
+                        <div class="option" onclick="selectOption(4, 'cabanas')">
+                            <div class="option-content">
+                                <div class="option-title">🛋️ Private Cabanas</div>
+                                <div class="option-desc">Your own shaded sanctuary</div>
+                            </div>
+                        </div>
+                        <div class="option" onclick="selectOption(4, 'infinity')">
+                            <div class="option-content">
+                                <div class="option-title">♾️ Infinity Pool</div>
+                                <div class="option-desc">Where water meets horizon</div>
+                            </div>
+                        </div>
+                        <div class="option" onclick="selectOption(4, 'spa')">
+                            <div class="option-content">
+                                <div class="option-title">💆 Beach Spa</div>
+                                <div class="option-desc">Wellness with ocean views</div>
+                            </div>
+                        </div>
+                        <div class="option" onclick="selectOption(4, 'waterslide')">
+                            <div class="option-content">
+                                <div class="option-title">🌊 Epic Waterslide</div>
+                                <div class="option-desc">Thrills & Instagram moments</div>
+                            </div>
+                        </div>
+                        <div class="option" onclick="selectOption(4, 'diving')">
+                            <div class="option-content">
+                                <div class="option-title">🤿 Iconic Diving Platform</div>
+                                <div class="option-desc">For the brave & photogenic</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Question 5: Menu -->
+                <div class="question-container" data-question="5">
+                    <p class="question-number">Question 5 of 9</p>
+                    <h2 class="question-title">What's on the menu?</h2>
+                    <div class="options">
+                        <div class="option" onclick="selectOption(5, 'seafood')">
+                            <div class="option-content">
+                                <div class="option-title">🦞 Fresh Seafood Bar</div>
+                                <div class="option-desc">Ocean-to-table perfection</div>
+                            </div>
+                        </div>
+                        <div class="option" onclick="selectOption(5, 'farmtotable')">
+                            <div class="option-content">
+                                <div class="option-title">🥗 Organic Farm-to-Table</div>
+                                <div class="option-desc">Locally sourced & virtuous</div>
+                            </div>
+                        </div>
+                        <div class="option" onclick="selectOption(5, 'streetfood')">
+                            <div class="option-content">
+                                <div class="option-title">🌮 Beach Street Food</div>
+                                <div class="option-desc">Casual bites, big flavors</div>
+                            </div>
+                        </div>
+                        <div class="option" onclick="selectOption(5, 'snacks')">
+                            <div class="option-content">
+                                <div class="option-title">🍿 Unlimited Local Snacks</div>
+                                <div class="option-desc">Grazing all day long</div>
+                            </div>
+                        </div>
+                        <div class="option" onclick="selectOption(5, 'dessert')">
+                            <div class="option-content">
+                                <div class="option-title">🍰 Opulent Dessert Bar</div>
+                                <div class="option-desc">Sweet tooth paradise</div>
+                            </div>
+                        </div>
+                        <div class="option" onclick="selectOption(5, 'finedining')">
+                            <div class="option-content">
+                                <div class="option-title">⭐ Michelin-Level Fine Dining</div>
+                                <div class="option-desc">Culinary excellence by the sea</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Question 6: Beverage -->
+                <div class="question-container" data-question="6">
+                    <p class="question-number">Question 6 of 9</p>
+                    <h2 class="question-title">What's the beverage situation?</h2>
+                    <div class="options">
+                        <div class="option" onclick="selectOption(6, 'champagne')">
+                            <div class="option-content">
+                                <div class="option-title">🍾 Champagne on Tap</div>
+                                <div class="option-desc">Bubbles flowing endlessly</div>
+                            </div>
+                        </div>
+                        <div class="option" onclick="selectOption(6, 'coffee')">
+                            <div class="option-content">
+                                <div class="option-title">☕ Full-Service Espresso & Matcha Bar</div>
+                                <div class="option-desc">Caffeinated sophistication</div>
+                            </div>
+                        </div>
+                        <div class="option" onclick="selectOption(6, 'cocktails')">
+                            <div class="option-content">
+                                <div class="option-title">🍹 Tropical Cocktails</div>
+                                <div class="option-desc">Rum-soaked vacation vibes</div>
+                            </div>
+                        </div>
+                        <div class="option" onclick="selectOption(6, 'smoothies')">
+                            <div class="option-content">
+                                <div class="option-title">🥤 Fresh Smoothie Bar</div>
+                                <div class="option-desc">Healthy hydration goals</div>
+                            </div>
+                        </div>
+                        <div class="option" onclick="selectOption(6, 'mocktails')">
+                            <div class="option-content">
+                                <div class="option-title">🌿 No-Alc Mocktails</div>
+                                <div class="option-desc">Sober-curious & stylish</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Question 7: Crowd -->
+                <div class="question-container" data-question="7">
+                    <p class="question-number">Question 7 of 9</p>
+                    <h2 class="question-title">Who's there?</h2>
+                    <div class="options">
+                        <div class="option" onclick="selectOption(7, 'locals')">
+                            <div class="option-content">
+                                <div class="option-title">🏡 'If You Know You Know' Locals-Only Spot</div>
+                                <div class="option-desc">The real insider's secret</div>
+                            </div>
+                        </div>
+                        <div class="option" onclick="selectOption(7, 'jetset')">
+                            <div class="option-content">
+                                <div class="option-title">✈️ The International Jet-Set</div>
+                                <div class="option-desc">Passports & prestige</div>
+                            </div>
+                        </div>
+                        <div class="option" onclick="selectOption(7, 'families')">
+                            <div class="option-content">
+                                <div class="option-title">👨‍👩‍👧 Families</div>
+                                <div class="option-desc">Multi-generational vacation magic</div>
+                            </div>
+                        </div>
+                        <div class="option" onclick="selectOption(7, 'creatives')">
+                            <div class="option-content">
+                                <div class="option-title">🎨 Creative Professionals</div>
+                                <div class="option-desc">Artists, writers & digital nomads</div>
+                            </div>
+                        </div>
+                        <div class="option" onclick="selectOption(7, 'wellness')">
+                            <div class="option-content">
+                                <div class="option-title">🧘 Wellness Seekers</div>
+                                <div class="option-desc">Mindful souls & yoga enthusiasts</div>
+                            </div>
+                        </div>
+                        <div class="option" onclick="selectOption(7, 'youngprofessionals')">
+                            <div class="option-content">
+                                <div class="option-title">💼 Ambitious Young Professionals</div>
+                                <div class="option-desc">Networking in swimwear</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Question 8: Design -->
+                <div class="question-container" data-question="8">
+                    <p class="question-number">Question 8 of 9</p>
+                    <h2 class="question-title">What's the design aesthetic?</h2>
+                    <div class="options">
+                        <div class="option" onclick="selectOption(8, '90s')">
+                            <div class="option-content">
+                                <div class="option-title">💿 90's Chic</div>
+                                <div class="option-desc">Nostalgia meets poolside cool</div>
+                            </div>
+                        </div>
+                        <div class="option" onclick="selectOption(8, '80s')">
+                            <div class="option-content">
+                                <div class="option-title">🌴 80's Lush & Opulent</div>
+                                <div class="option-desc">Maximalist tropical excess</div>
+                            </div>
+                        </div>
+                        <div class="option" onclick="selectOption(8, 'ultramodern')">
+                            <div class="option-content">
+                                <div class="option-title">🔮 Ultra Modern</div>
+                                <div class="option-desc">Futuristic & architectural</div>
+                            </div>
+                        </div>
+                        <div class="option" onclick="selectOption(8, 'collab')">
+                            <div class="option-content">
+                                <div class="option-title">🎨 Aesthetic Designer Collab</div>
+                                <div class="option-desc">Limited-edition artist takeover</div>
+                            </div>
+                        </div>
+                        <div class="option" onclick="selectOption(8, 'midcentury')">
+                            <div class="option-content">
+                                <div class="option-title">🪑 Mid-Century Modern</div>
+                                <div class="option-desc">Timeless Palm Springs energy</div>
+                            </div>
+                        </div>
+                        <div class="option" onclick="selectOption(8, 'mediterranean')">
+                            <div class="option-content">
+                                <div class="option-title">🏺 Classic Mediterranean</div>
+                                <div class="option-desc">Whitewashed & bougainvillea-draped</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Question 9: Soundtrack -->
+                <div class="question-container" data-question="9">
+                    <p class="question-number">Question 9 of 9</p>
+                    <h2 class="question-title">What's the soundtrack?</h2>
+                    <div class="options">
+                        <div class="option" onclick="selectOption(9, 'dj')">
+                            <div class="option-content">
+                                <div class="option-title">🎧 Live DJ Sets</div>
+                                <div class="option-desc">Curated beats all day</div>
+                            </div>
+                        </div>
+                        <div class="option" onclick="selectOption(9, 'band')">
+                            <div class="option-content">
+                                <div class="option-title">🎸 Live Band</div>
+                                <div class="option-desc">Acoustic sessions & sunset serenades</div>
+                            </div>
+                        </div>
+                        <div class="option" onclick="selectOption(9, '2000s')">
+                            <div class="option-content">
+                                <div class="option-title">💃 2000s Dance Hits</div>
+                                <div class="option-desc">Peak millennial nostalgia</div>
+                            </div>
+                        </div>
+                        <div class="option" onclick="selectOption(9, 'reggae')">
+                            <div class="option-content">
+                                <div class="option-title">🌊 Reggae & Island Vibes</div>
+                                <div class="option-desc">Laid-back tropical rhythms</div>
+                            </div>
+                        </div>
+                        <div class="option" onclick="selectOption(9, 'waves')">
+                            <div class="option-content">
+                                <div class="option-title">🌅 Waves Only</div>
+                                <div class="option-desc">Nature is the soundtrack</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="result" class="result-container">
+                <h2 class="lido-name" id="lidoName"></h2>
+                <img id="lidoImage" class="lido-image" src="" alt="Your Dream Lido">
+                <p class="lido-description" id="lidoDescription"></p>
+                
+                <div class="email-form">
+                    <h3>Get Your Lido Card</h3>
+                    <p>Subscribe to <strong>BOOTS</strong> to unlock your downloadable lido card with your custom AI-generated image and answer choices. You'll also get field research, cultural strategy, and the art of observation delivered to your inbox.</p>
+                    <input type="email" class="email-input" id="emailInput" placeholder="your@email.com" required>
+                    <button class="btn" onclick="submitEmail()">Subscribe & Get My Lido Card</button>
+                    <p class="thank-you" id="thankYou" style="display: none;">✓ Welcome to BOOTS! Your lido card is ready to download and share.</p>
+                </div>
+                
+                <div class="social-share" id="socialShare">
+                    <h3 style="font-family: 'Bebas Neue', cursive; background: linear-gradient(90deg, #FF6B9D, #FFA07A); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 15px; letter-spacing: 1px;">Share Your Lido Card</h3>
+                    <div class="social-buttons">
+                        <button class="social-btn linkedin" onclick="shareLinkedIn()">Share on LinkedIn</button>
+                        <button class="social-btn twitter" onclick="shareTwitter()">Share on X</button>
+                        <button class="social-btn copy" onclick="copyLink()">Copy Link</button>
+                        <button class="social-btn copy" onclick="downloadLidoCard()" style="background: #FF6B9D; color: white; border: none;">Download Lido Card</button>
+                    </div>
+                </div>
+                
+                <button class="btn" onclick="resetQuiz()" style="margin-top: 30px; background: linear-gradient(135deg, #FFD93D 0%, #FFA07A 100%);">Build Another Lido</button>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        const answers = {};
+        let currentQuestion = 1;
+        const totalQuestions = 9;
+        
+        // Prompt building components for each answer
+        const promptComponents = {
+            // Q1: Location
+            location: {
+                'ibiza': {
+                    setting: 'Ibiza, Spain beach club',
+                    atmosphere: 'white isle energy, Mediterranean coastline',
+                    mood: 'glamorous party atmosphere'
+                },
+                'miami': {
+                    setting: 'Miami Beach, Florida',
+                    atmosphere: 'Art Deco architecture, ocean drive vibes',
+                    mood: 'vibrant tropical energy'
+                },
+                'cotedazur': {
+                    setting: 'French Riviera, Côte d\'Azur',
+                    atmosphere: 'azure Mediterranean waters, elegant coastline',
+                    mood: 'sophisticated European luxury'
+                },
+                'sicily': {
+                    setting: 'Sicilian coast, Italy',
+                    atmosphere: 'volcanic cliffs, authentic Mediterranean charm',
+                    mood: 'rustic Italian elegance'
+                },
+                'cabo': {
+                    setting: 'Cabo San Lucas, Mexico',
+                    atmosphere: 'desert meets ocean, dramatic rock formations',
+                    mood: 'vibrant Mexican coastal energy'
+                },
+                'bali': {
+                    setting: 'Bali, Indonesia',
+                    atmosphere: 'tropical rice terraces, lush jungle surrounds',
+                    mood: 'zen tropical paradise'
+                },
+                'mykonos': {
+                    setting: 'Mykonos, Greece',
+                    atmosphere: 'Cycladic white architecture, Aegean Sea',
+                    mood: 'chic Greek island sophistication'
+                }
+            },
+            
+            // Q2: Vibe
+            vibe: {
+                'bohemian': 'bohemian free-spirited aesthetic, artistic details, natural textiles',
+                'peaceful': 'serene peaceful atmosphere, minimal crowds, tranquil energy',
+                'family': 'joyful family-friendly vibe, multi-generational, welcoming atmosphere',
+                'party': 'vibrant party scene, energetic crowd, festive lighting',
+                'exclusive': 'exclusive elite atmosphere, luxury details, sophisticated crowd',
+                'social': 'chic social scene, stylish guests mingling, see-and-be-seen energy'
+            },
+            
+            // Q3: Reservation (affects exclusivity/crowd)
+            reservation: {
+                'walkin': 'casual accessible entrance, welcoming open layout',
+                'lastminute': 'modern tech-friendly setup, contemporary booking systems',
+                'vip': 'velvet rope entrance, VIP sections, exclusive access points',
+                'hotel': 'luxury hotel amenities integration, premium service touches',
+                'invite': 'hidden exclusive entrance, secret garden vibes, intimate scale'
+            },
+            
+            // Q4: Main Attraction
+            attraction: {
+                'dancefloor': 'illuminated dance floor with DJ booth, party lighting, vibrant energy',
+                'cabanas': 'private luxury cabanas with draping, intimate lounging areas',
+                'infinity': 'stunning infinity pool blending with horizon, seamless water edge',
+                'spa': 'beach spa pavilion, wellness treatment areas, serene spa setting',
+                'waterslide': 'epic waterslide feature, playful aquatic elements, fun atmosphere',
+                'diving': 'dramatic diving platform or board, architectural swimming features'
+            },
+            
+            // Q5: Menu
+            menu: {
+                'seafood': 'fresh seafood bar display, ocean-to-table dining, grilled fish',
+                'farmtotable': 'organic farm-to-table restaurant, fresh produce displays, healthy cuisine',
+                'streetfood': 'casual beach street food vendors, authentic local bites, relaxed dining',
+                'snacks': 'abundant snack stations, grazing options, casual food service',
+                'dessert': 'opulent dessert bar, decadent sweets display, indulgent treats',
+                'finedining': 'Michelin-level fine dining restaurant, elegant table settings, gourmet presentation'
+            },
+            
+            // Q6: Beverage
+            beverage: {
+                'champagne': 'champagne bar with flowing bottles, elegant glassware, luxury drink service',
+                'coffee': 'artisan espresso and matcha bar, specialty coffee station, barista setup',
+                'cocktails': 'tropical cocktail bar with colorful drinks, tiki-style presentation, festive beverages',
+                'smoothies': 'fresh smoothie and juice bar, healthy drink station, vibrant fruit displays',
+                'mocktails': 'sophisticated mocktail bar, non-alcoholic craft drinks, wellness-focused beverages'
+            },
+            
+            // Q7: Crowd
+            crowd: {
+                'locals': 'intimate local crowd, authentic neighborhood vibe, regulars atmosphere',
+                'jetset': 'international jet-set crowd, designer swimwear, globally sophisticated guests',
+                'families': 'multi-generational families, children playing, joyful family groups',
+                'creatives': 'creative professionals, artists and writers, intellectual bohemian crowd',
+                'wellness': 'wellness-focused guests, yoga practitioners, mindful health-conscious crowd',
+                'youngprofessionals': 'ambitious young professionals, networking energy, stylish millennials'
+            },
+            
+            // Q8: Design
+            design: {
+                '90s': '1990s aesthetic with nostalgic touches, retro-chic design elements',
+                '80s': '1980s opulent maximalism, bold colors, tropical palm motifs, lush decor',
+                'ultramodern': 'ultra-modern futuristic architecture, sleek minimalism, contemporary design',
+                'collab': 'artistic designer collaboration, unique custom artwork, limited-edition aesthetic',
+                'midcentury': 'mid-century modern design, Palm Springs style, vintage 1960s furniture',
+                'mediterranean': 'classic Mediterranean architecture, whitewashed walls, bougainvillea, terracotta'
+            },
+            
+            // Q9: Soundtrack
+            soundtrack: {
+                'dj': 'DJ performing with turntables, electronic music energy, party atmosphere',
+                'band': 'live band performing, acoustic instruments, intimate music setting',
+                '2000s': 'nostalgic 2000s energy, millennial aesthetic, throwback vibes',
+                'reggae': 'laid-back reggae atmosphere, island music vibes, relaxed tropical energy',
+                'waves': 'natural peaceful setting, sounds of waves, serene atmosphere with minimal activity'
+            }
+        };
+        
+        // Lido name generators based on location + vibe
+        // Add floating elements with vintage aesthetic
+        const floatElements = ['🌺', '🍹', '☀️', '🌊', '🥥', '🌴', '🏖️', '💎', '🎧', '🍾'];
+        const bgContainer = document.getElementById('animatedBg');
+        
+        for (let i = 0; i < 18; i++) {
+            const element = document.createElement('div');
+            element.className = 'float-element';
+            element.textContent = floatElements[Math.floor(Math.random() * floatElements.length)];
+            element.style.left = Math.random() * 100 + '%';
+            element.style.top = Math.random() * 100 + '%';
+            element.style.animationDelay = Math.random() * 20 + 's';
+            element.style.animationDuration = (15 + Math.random() * 10) + 's';
+            bgContainer.appendChild(element);
+        }
+        
+        function startQuiz() {
+            document.getElementById('intro').style.display = 'none';
+            document.getElementById('quiz').style.display = 'block';
+            updateProgress();
+        }
+        
+        function selectOption(questionNum, value) {
+            answers[questionNum] = value;
+            
+            if (questionNum < totalQuestions) {
+                // Move to next question
+                document.querySelector(`[data-question="${questionNum}"]`).classList.remove('active');
+                document.querySelector(`[data-question="${questionNum + 1}"]`).classList.add('active');
+                currentQuestion = questionNum + 1;
+                updateProgress();
+            } else {
+                // Quiz complete, show results
+                showResults();
+            }
+        }
+        
+        function updateProgress() {
+            const progress = ((currentQuestion - 1) / totalQuestions) * 100;
+            document.getElementById('progressFill').style.width = progress + '%';
+        }
+        
+        function generateLidoName() {
+            const location = answers[1];
+            const vibe = answers[2];
+            const attraction = answers[4];
+            const design = answers[8];
+            
+            // Create deterministic name components based on ALL answers
+            const locationPrefixes = {
+                'ibiza': ['Sol', 'Blanco', 'Luna', 'Cielo', 'Mar'],
+                'miami': ['Deco', 'Ocean', 'Palm', 'Sunset', 'Breeze'],
+                'cotedazur': ['Mer', 'Azure', 'Belle', 'Ciel', 'Rivage'],
+                'sicily': ['Villa', 'Casa', 'Isola', 'Mare', 'Terra'],
+                'cabo': ['Playa', 'Arena', 'Onda', 'Sol', 'Luna'],
+                'bali': ['Lotus', 'Bamboo', 'Dewi', 'Nusa', 'Zen'],
+                'mykonos': ['Aegean', 'Kyma', 'Thalassa', 'Neos', 'Leuko']
+            };
+            
+            const vibeSuffixes = {
+                'bohemian': ['Soul', 'Spirit', 'Libre', 'Arte', 'Boheme'],
+                'peaceful': ['Tranquil', 'Serene', 'Calm', 'Zen', 'Peace'],
+                'family': ['Joy', 'Haven', 'Familia', 'Casa', 'Home'],
+                'party': ['Beat', 'Pulse', 'Fiesta', 'Vida', 'Ritmo'],
+                'exclusive': ['Private', 'Elite', 'Club', 'Reserve', 'Royal'],
+                'social': ['Social', 'Chic', 'Scene', 'Vie', 'Society']
+            };
+            
+            const attractionModifiers = {
+                'dancefloor': ['Electric', 'Neon', 'Night', 'Dance', 'Groove'],
+                'cabanas': ['Private', 'Secret', 'Hidden', 'Oasis', 'Sanctuary'],
+                'infinity': ['Infinite', 'Edge', 'Horizon', 'Endless', 'Vista'],
+                'spa': ['Wellness', 'Bliss', 'Remedy', 'Revive', 'Balance'],
+                'waterslide': ['Splash', 'Wave', 'Flow', 'Rush', 'Aqua'],
+                'diving': ['Deep', 'Dive', 'Plunge', 'Blue', 'Abyss']
+            };
+            
+            const designModifiers = {
+                '90s': ['Retro', 'Nostalgia', 'Vintage', 'Echo', 'Classic'],
+                '80s': ['Neon', 'Lux', 'Opulent', 'Glam', 'Gold'],
+                'ultramodern': ['Neo', 'Future', 'Nexus', 'Pulse', 'Arc'],
+                'collab': ['Arte', 'Studio', 'Gallery', 'Canvas', 'Muse'],
+                'midcentury': ['Modern', 'Palm', 'Deco', 'Century', 'Moderne'],
+                'mediterranean': ['Blanc', 'Costa', 'Porto', 'Marina', 'Bay']
+            };
+            
+            // Use hash of all answers to deterministically select indices
+            const answerString = `${answers[1]}-${answers[2]}-${answers[3]}-${answers[4]}-${answers[5]}-${answers[6]}-${answers[7]}-${answers[8]}-${answers[9]}`;
+            const hash = Array.from(answerString).reduce((acc, char) => {
+                return ((acc << 5) - acc) + char.charCodeAt(0);
+            }, 0);
+            
+            // Use hash to consistently select name components
+            const prefixArray = locationPrefixes[location] || ['Blue', 'Golden', 'Silver', 'Pearl', 'Coral'];
+            const suffixArray = vibeSuffixes[vibe] || ['Club', 'Beach', 'Shore', 'Bay', 'Coast'];
+            const attractionArray = attractionModifiers[attraction] || ['Dream', 'Paradise', 'Escape', 'Haven', 'Retreat'];
+            const designArray = designModifiers[design] || ['Grand', 'Royal', 'Imperial', 'Noble', 'Majestic'];
+            
+            // Deterministically pick based on hash
+            const prefixIndex = Math.abs(hash) % prefixArray.length;
+            const suffixIndex = Math.abs(hash >> 8) % suffixArray.length;
+            const useAttraction = Math.abs(hash >> 16) % 3 === 0; // 33% chance to include attraction modifier
+            const useDesign = Math.abs(hash >> 24) % 3 === 0; // 33% chance to include design modifier
+            
+            let name = '';
+            
+            // Build name based on answer combination
+            if (useAttraction && useDesign) {
+                // Three-word name: prefix + attraction/design + suffix
+                const modifierIndex = Math.abs(hash >> 12) % 2 === 0 ? 
+                    Math.abs(hash >> 20) % attractionArray.length : 
+                    Math.abs(hash >> 20) % designArray.length;
+                const modifier = Math.abs(hash >> 12) % 2 === 0 ? 
+                    attractionArray[modifierIndex] : 
+                    designArray[modifierIndex];
+                name = `${prefixArray[prefixIndex]} ${modifier} ${suffixArray[suffixIndex]}`;
+            } else if (useAttraction) {
+                // Include attraction modifier
+                const attractionIndex = Math.abs(hash >> 20) % attractionArray.length;
+                name = `${attractionArray[attractionIndex]} ${prefixArray[prefixIndex]} ${suffixArray[suffixIndex]}`;
+            } else if (useDesign) {
+                // Include design modifier  
+                const designIndex = Math.abs(hash >> 20) % designArray.length;
+                name = `${prefixArray[prefixIndex]} ${designArray[designIndex]}`;
+            } else {
+                // Simple two-word name
+                name = `${prefixArray[prefixIndex]} ${suffixArray[suffixIndex]}`;
+            }
+            
+            return name;
+        }
+        
+        function buildImagePrompt() {
+            const loc = promptComponents.location[answers[1]];
+            const vibe = promptComponents.vibe[answers[2]];
+            const reservation = promptComponents.reservation[answers[3]];
+            const attraction = promptComponents.attraction[answers[4]];
+            const menu = promptComponents.menu[answers[5]];
+            const beverage = promptComponents.beverage[answers[6]];
+            const crowd = promptComponents.crowd[answers[7]];
+            const design = promptComponents.design[answers[8]];
+            const soundtrack = promptComponents.soundtrack[answers[9]];
+            
+            // Build comprehensive prompt
+            const prompt = `A stunning lido/beach club photograph in ${loc.setting}, featuring ${loc.atmosphere}. 
+${vibe}. ${loc.mood}. ${reservation}. 
+Main feature: ${attraction}. 
+Dining: ${menu}. 
+Bar area: ${beverage}. 
+Crowd: ${crowd}. 
+Design style: ${design}. 
+Atmosphere: ${soundtrack}. 
+STYLE: Glossy magazine photography, 1990s tropicale editorial aesthetic, vintage film grain texture on Kodak Portra 400, 
+slightly desaturated warm tones, golden hour natural lighting, sophisticated editorial composition, 
+Club Med vacation catalog style, soft vignette edges, professional travel photography, 
+dreamy summer atmosphere with film imperfections, retro color grading, nostalgic 90s leisure magazine look, 
+vacation editorial quality, shot on 35mm film camera.`;
+            
+            return prompt;
+        }
+        
+        function generateDescription() {
+            const location = answers[1];
+            const vibe = answers[2];
+            const attraction = answers[4];
+            const beverage = answers[6];
+            const crowd = answers[7];
+            
+            const locationTexts = {
+                'ibiza': 'Ibiza\'s legendary coastline',
+                'miami': 'Miami\'s electric shores',
+                'cotedazur': 'the French Riviera',
+                'sicily': 'Sicily\'s volcanic coast',
+                'cabo': 'Cabo\'s desert-meets-ocean magic',
+                'bali': 'Bali\'s tropical paradise',
+                'mykonos': 'Mykonos\' Cycladic perfection'
+            };
+            
+            const vibeTexts = {
+                'bohemian': 'free-spirited and artistic',
+                'peaceful': 'serene and contemplative',
+                'family': 'joyful and welcoming',
+                'party': 'electric and vibrant',
+                'exclusive': 'sophisticated and elite',
+                'social': 'chic and connected'
+            };
+            
+            const attractionTexts = {
+                'dancefloor': 'where the illuminated dance floor never stops',
+                'cabanas': 'where private cabanas offer perfect sanctuary',
+                'infinity': 'where the infinity pool kisses the horizon',
+                'spa': 'where the beach spa brings pure tranquility',
+                'waterslide': 'where the waterslide brings endless joy',
+                'diving': 'where the diving platform calls the brave'
+            };
+            
+            const beverageTexts = {
+                'champagne': 'Champagne flows endlessly',
+                'coffee': 'Artisan coffee fuels the day',
+                'cocktails': 'Tropical cocktails paint the afternoon',
+                'smoothies': 'Fresh smoothies refresh the soul',
+                'mocktails': 'Craft mocktails elevate the moment'
+            };
+            
+            const crowdTexts = {
+                'locals': 'locals who guard this secret closely',
+                'jetset': 'the international jet-set',
+                'families': 'families creating memories',
+                'creatives': 'artists and dreamers',
+                'wellness': 'wellness seekers finding balance',
+                'youngprofessionals': 'ambitious souls on their best behavior'
+            };
+            
+            return `Your dream lido lives on ${locationTexts[location]}. ${vibeTexts[vibe]}, ${attractionTexts[attraction]}. ${beverageTexts[beverage]} as ${crowdTexts[crowd]} find their perfect summer rhythm. This is where you belong.`;
+        }
+        
+        async function generateImage(prompt) {
+            try {
+                const response = await fetch('https://lido-image-api.montanablair.repl.co/generate-image', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        prompt: prompt
+                    })
+                });
+                
+                const data = await response.json();
+                if (data.success) {
+                    return data.imageUrl;
+                } else {
+                    console.error('Image generation failed:', data.error);
+                    return null;
+                }
+            } catch (error) {
+                console.error('Error generating image:', error);
+                return null;
+            }
+        }
+        
+        async function showResults() {
+            document.getElementById('quiz').style.display = 'none';
+            document.getElementById('result').classList.add('active');
+            
+            // Generate personalized content
+            const lidoName = generateLidoName();
+            const description = generateDescription();
+            const imagePrompt = buildImagePrompt();
+            
+            document.getElementById('lidoName').textContent = lidoName;
+            document.getElementById('lidoDescription').textContent = description;
+            
+            // Show loading state
+            const imageElement = document.getElementById('lidoImage');
+            imageElement.src = 'data:image/svg+xml,' + encodeURIComponent(`
+                <svg width="800" height="500" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#4a90b8;stop-opacity:1" />
+                            <stop offset="50%" style="stop-color:#77b5d9;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#ffa07a;stop-opacity:0.8" />
+                        </linearGradient>
+                    </defs>
+                    <rect width="800" height="500" fill="url(#grad1)"/>
+                    <text x="400" y="230" font-family="Arial, sans-serif" font-size="24" fill="white" text-anchor="middle" opacity="0.9">Generating your dream lido...</text>
+                    <text x="400" y="270" font-family="Arial, sans-serif" font-size="16" fill="white" text-anchor="middle" opacity="0.7">${lidoName}</text>
+                </svg>
+            `);
+            
+            // Store the prompt for display (optional - you can show users their prompt)
+            console.log('Image Prompt:', imagePrompt);
+            
+            // Try to generate image via API
+            const generatedImageUrl = await generateImage(imagePrompt);
+            
+            if (generatedImageUrl) {
+                imageElement.src = generatedImageUrl;
+            } else {
+                // Fallback to styled placeholder with the generated name
+                imageElement.src = 'data:image/svg+xml,' + encodeURIComponent(`
+                    <svg width="800" height="500" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#4a90b8;stop-opacity:1" />
+                                <stop offset="40%" style="stop-color:#77b5d9;stop-opacity:1" />
+                                <stop offset="70%" style="stop-color:#ffa07a;stop-opacity:0.8" />
+                                <stop offset="100%" style="stop-color:#ff8fab;stop-opacity:0.9" />
+                            </linearGradient>
+                            <filter id="grain">
+                                <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="4" stitchTiles="stitch"/>
+                                <feColorMatrix type="saturate" values="0"/>
+                                <feComponentTransfer>
+                                    <feFuncA type="discrete" tableValues="0 0 0 0 0 1"/>
+                                </feComponentTransfer>
+                                <feBlend mode="multiply" in="SourceGraphic"/>
+                            </filter>
+                        </defs>
+                        <rect width="800" height="500" fill="url(#grad1)"/>
+                        <rect width="800" height="500" fill="white" opacity="0.05" filter="url(#grain)"/>
+                        <text x="400" y="230" font-family="Arial, Helvetica, sans-serif" font-size="48" fill="white" text-anchor="middle" font-weight="bold" letter-spacing="4" opacity="0.95">${lidoName.toUpperCase()}</text>
+                        <text x="400" y="275" font-family="Arial, Helvetica, sans-serif" font-size="16" fill="white" text-anchor="middle" opacity="0.8" letter-spacing="2">YOUR DREAM LIDO AWAITS</text>
+                        <text x="400" y="310" font-family="Arial, Helvetica, sans-serif" font-size="13" fill="white" text-anchor="middle" opacity="0.6" letter-spacing="1">(Connect API to see AI-generated image)</text>
+                        <rect x="0" y="0" width="800" height="500" fill="none" stroke="white" stroke-width="2" opacity="0.3"/>
+                    </svg>
+                `);
+            }
+        }
+        
+        function submitEmail() {
+            const email = document.getElementById('emailInput').value;
+            
+            if (!email || !email.includes('@')) {
+                alert('Please enter a valid email address');
+                return;
+            }
+            
+            // Submit to Substack
+            const form = document.createElement('form');
+            form.method = 'POST';
+            form.action = 'https://bootsletter.substack.com/api/v1/free';
+            form.target = '_blank';
+            
+            const emailInput = document.createElement('input');
+            emailInput.type = 'email';
+            emailInput.name = 'email';
+            emailInput.value = email;
+            form.appendChild(emailInput);
+            
+            const sourceInput = document.createElement('input');
+            sourceInput.type = 'hidden';
+            sourceInput.name = 'source';
+            sourceInput.value = 'build-a-lido';
+            form.appendChild(sourceInput);
+            
+            document.body.appendChild(form);
+            form.submit();
+            document.body.removeChild(form);
+            
+            // Show thank you message and enable download
+            setTimeout(() => {
+                document.getElementById('thankYou').style.display = 'block';
+                document.getElementById('emailInput').disabled = true;
+                document.getElementById('socialShare').classList.add('active');
+            }, 500);
+        }
+        
+        function shareLinkedIn() {
+            const lidoName = document.getElementById('lidoName').textContent;
+            const text = `I just built my dream lido: ${lidoName}! ☀️ What's yours? Design your perfect summer escape.`;
+            const url = window.location.href;
+            window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}&summary=${encodeURIComponent(text)}`, '_blank');
+        }
+        
+        function shareTwitter() {
+            const lidoName = document.getElementById('lidoName').textContent;
+            const text = `I just built my dream lido: ${lidoName}! ☀️🌊 What's yours?`;
+            const url = window.location.href;
+            window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`, '_blank');
+        }
+        
+        function copyLink() {
+            navigator.clipboard.writeText(window.location.href);
+            alert('Link copied to clipboard! Share your dream lido with friends ✨');
+        }
+        
+        function getAnswerDisplayText(questionNumber, answerKey) {
+            const displayTexts = {
+                1: { // Location
+                    'ibiza': 'Ibiza, Spain',
+                    'miami': 'Miami Beach, USA',
+                    'cotedazur': 'French Riviera',
+                    'sicily': 'Sicily, Italy',
+                    'cabo': 'Cabo, Mexico',
+                    'bali': 'Bali, Indonesia',
+                    'mykonos': 'Mykonos, Greece'
+                },
+                2: { // Vibe
+                    'bohemian': 'Bohemian & Free-spirited',
+                    'peaceful': 'Peaceful & Serene',
+                    'family': 'Family-friendly',
+                    'party': 'High-energy Party',
+                    'exclusive': 'Exclusive & Upscale',
+                    'social': 'Chic & Connected'
+                },
+                3: { // Reservation
+                    'strict': 'Strict Members-only',
+                    'locals': 'Local Favorites',
+                    'walkin': 'Walk-in Welcome',
+                    'invite': 'Invite-only Access'
+                },
+                4: { // Attraction
+                    'dancefloor': 'Illuminated Dancefloor',
+                    'cabanas': 'Private Cabanas',
+                    'infinity': 'Infinity Pool',
+                    'spa': 'Beach Spa',
+                    'waterslide': 'Epic Waterslide',
+                    'garden': 'Secret Garden'
+                },
+                5: { // Menu
+                    'seafood': 'Fresh Seafood Bar',
+                    'mediterranean': 'Mediterranean Feast',
+                    'asian': 'Pan-Asian Fusion',
+                    'italian': 'Italian Classics',
+                    'vegan': 'Plant-based Menu',
+                    'tapas': 'Spanish Tapas'
+                },
+                6: { // Beverage
+                    'cocktails': 'Signature Cocktails',
+                    'wine': 'Natural Wines',
+                    'champagne': 'Champagne Bar',
+                    'juice': 'Fresh Juice Bar',
+                    'beer': 'Craft Beers',
+                    'mocktails': 'Artisan Mocktails'
+                },
+                7: { // Crowd
+                    'local': 'Local Insiders',
+                    'international': 'Global Travelers',
+                    'creatives': 'Artists & Creatives',
+                    'families': 'Families with Kids',
+                    'wellness': 'Wellness Seekers',
+                    'curated': 'Curated Crowd'
+                },
+                8: { // Design
+                    'minimalist': 'Minimalist & Modern',
+                    'tropical': 'Tropical Paradise',
+                    '90s': '90s Nostalgia',
+                    'industrial': 'Industrial Chic',
+                    'mediterranean': 'Mediterranean Classic',
+                    'futuristic': 'Futuristic Design'
+                },
+                9: { // Soundtrack
+                    'house': 'Deep House',
+                    'jazz': 'Jazz & Bossa Nova',
+                    'indie': 'Indie Electronic',
+                    'reggae': 'Reggae & Dub',
+                    'classical': 'Classical Music',
+                    'silent': 'Natural Sounds Only'
+                }
+            };
+            
+            return displayTexts[questionNumber]?.[answerKey] || answerKey;
+        }
+        
+        function downloadLidoCard() {
+            const lidoName = document.getElementById('lidoName').textContent;
+            const lidoImage = document.getElementById('lidoImage');
+            
+            // Create Instagram-sized canvas (1080x1080px)
+            const canvas = document.createElement('canvas');
+            canvas.width = 1080;
+            canvas.height = 1080;
+            const ctx = canvas.getContext('2d');
+            
+            // Deep navy background
+            ctx.fillStyle = '#0a1628';
+            ctx.fillRect(0, 0, 1080, 1080);
+            
+            // Add film grain texture
+            for (let i = 0; i < 3000; i++) {
+                const x = Math.random() * 1080;
+                const y = Math.random() * 1080;
+                const opacity = Math.random() * 0.15;
+                ctx.fillStyle = `rgba(255, 255, 255, ${opacity})`;
+                ctx.fillRect(x, y, 1, 1);
+            }
+            
+            // Gradient overlay (midnight sun colors)
+            const gradient = ctx.createLinearGradient(0, 0, 0, 1080);
+            gradient.addColorStop(0, 'rgba(255, 107, 157, 0.15)');
+            gradient.addColorStop(0.3, 'rgba(255, 160, 122, 0.2)');
+            gradient.addColorStop(0.7, 'rgba(78, 205, 196, 0.15)');
+            gradient.addColorStop(1, 'rgba(10, 22, 40, 0.5)');
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, 1080, 1080);
+            
+            // Load and draw the AI-generated lido image
+            const drawCard = () => {
+                // Draw image at top (1080x650px)
+                if (lidoImage && lidoImage.complete && !lidoImage.src.includes('svg')) {
+                    ctx.drawImage(lidoImage, 0, 0, 1080, 650);
+                    
+                    // Add subtle vignette over image
+                    const vignette = ctx.createRadialGradient(540, 325, 200, 540, 325, 650);
+                    vignette.addColorStop(0, 'rgba(0, 0, 0, 0)');
+                    vignette.addColorStop(1, 'rgba(0, 0, 0, 0.4)');
+                    ctx.fillStyle = vignette;
+                    ctx.fillRect(0, 0, 1080, 650);
+                }
+                
+                // Content area background (below image)
+                ctx.fillStyle = '#0a1628';
+                ctx.fillRect(0, 650, 1080, 430);
+                
+                // "YOUR DREAM LIDO" header
+                ctx.font = '900 28px "DM Sans", sans-serif';
+                ctx.fillStyle = 'rgba(255, 255, 255, 0.5)';
+                ctx.letterSpacing = '3px';
+                ctx.textAlign = 'center';
+                ctx.fillText('YOUR DREAM LIDO', 540, 710);
+                
+                // Lido name in Bebas Neue style
+                ctx.font = '900 64px "Bebas Neue", sans-serif';
+                ctx.fillStyle = '#ffffff';
+                ctx.letterSpacing = '2px';
+                ctx.fillText(lidoName.toUpperCase(), 540, 780);
+                
+                // Answer summary with emojis
+                const summaryItems = [
+                    `📍 ${getAnswerDisplayText(1, answers[1])}`,
+                    `✨ ${getAnswerDisplayText(2, answers[2])}`,
+                    `🍽️ ${getAnswerDisplayText(5, answers[5])}`,
+                    `🍷 ${getAnswerDisplayText(6, answers[6])}`,
+                    `👥 ${getAnswerDisplayText(7, answers[7])}`,
+                    `🎨 ${getAnswerDisplayText(8, answers[8])}`,
+                    `🎵 ${getAnswerDisplayText(9, answers[9])}`
+                ];
+                
+                ctx.font = '500 22px "DM Sans", sans-serif';
+                ctx.fillStyle = 'rgba(255, 255, 255, 0.85)';
+                ctx.textAlign = 'left';
+                ctx.letterSpacing = '0px';
+                
+                let yPos = 840;
+                const lineHeight = 32;
+                
+                summaryItems.forEach((item, index) => {
+                    if (index < 4) {
+                        // Left column
+                        ctx.fillText(item, 80, yPos + (index * lineHeight));
+                    } else {
+                        // Right column
+                        ctx.fillText(item, 580, yPos + ((index - 4) * lineHeight));
+                    }
+                });
+                
+                // BOOTS branding at bottom
+                ctx.font = '500 18px "DM Sans", sans-serif';
+                ctx.fillStyle = '#FF6B9D';
+                ctx.textAlign = 'center';
+                ctx.letterSpacing = '2px';
+                ctx.fillText('Created with Build-A-Lido', 540, 1030);
+                
+                ctx.font = '700 20px "DM Sans", sans-serif';
+                ctx.fillStyle = '#ffffff';
+                ctx.fillText('BOOTS', 540, 1055);
+                
+                // Download
+                canvas.toBlob(function(blob) {
+                    const url = URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = `${lidoName.replace(/\s+/g, '-')}-lido-card.png`;
+                    document.body.appendChild(a);
+                    a.click();
+                    document.body.removeChild(a);
+                    URL.revokeObjectURL(url);
+                });
+            };
+            
+            // If image needs to load, wait for it
+            if (lidoImage && !lidoImage.complete) {
+                lidoImage.onload = drawCard;
+            } else {
+                drawCard();
+            }
+        }
+        
+        function resetQuiz() {
+            Object.keys(answers).forEach(key => delete answers[key]);
+            currentQuestion = 1;
+            
+            document.getElementById('result').classList.remove('active');
+            document.getElementById('intro').style.display = 'block';
+            document.getElementById('emailInput').disabled = false;
+            document.getElementById('emailInput').value = '';
+            document.getElementById('thankYou').style.display = 'none';
+            document.getElementById('socialShare').classList.remove('active');
+            
+            document.querySelectorAll('.question-container').forEach(q => q.classList.remove('active'));
+            document.querySelector('[data-question="1"]').classList.add('active');
+            
+            updateProgress();
+        }
+    </script>
+</body>
+</html>
