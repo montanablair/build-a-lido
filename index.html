@@ -1356,18 +1356,7 @@ if (data.success) {
 } else {
     console.error('Image generation failed:', data.error);
     return null;
-}, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        prompt: prompt,
-                        // Add any Google Imagen specific parameters
-                        aspectRatio: '16:10',
-                        sampleCount: 1
-                    })
-                });
+}
                 
                 const data = await response.json();
                 return data.imageUrl; // or however your API returns the image
